@@ -11,6 +11,14 @@ public class MyChestController : MonoBehaviour
     public GameObject chestLid;
     public GameObject chestLight;
 
+    [Header("Opening Curve")]
+    public AnimationCurve shakeOpeningCurve;
+
+    [Header("Closing Curve")]
+    public AnimationCurve shakeClosingCurve;
+
+    public TestShake cameraShake;
+
     private bool chestOpen = false;
 
     private void Start()
@@ -25,12 +33,14 @@ public class MyChestController : MonoBehaviour
         {
             chestAnim.Play("ChestOpen", 0, 0);
             lightAnim.Play("LightOn", 0, 0);
+            cameraShake.StartShake(shakeOpeningCurve);
             chestOpen = true;
         }
         else
         {
             chestAnim.Play("ChestClose", 0, 0);
             lightAnim.Play("LightOff", 0, 0);
+            cameraShake.StartShake(shakeClosingCurve);
             chestOpen = false;
         }
     }
