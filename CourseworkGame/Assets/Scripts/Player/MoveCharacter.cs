@@ -9,7 +9,6 @@ public class MoveCharacter : MonoBehaviour
     private float moveSpeed;
     public float walkSpeed;
     public float sprintSpeed;
-    public float wallRunSpeed;
     public float dashSpeed;
     public float dashSpeedChangeFactor;
 
@@ -54,7 +53,6 @@ public class MoveCharacter : MonoBehaviour
     Rigidbody rb;
 
 
-    public bool wallRunning;
     public bool dashing;
 
     public MovementState state;
@@ -63,7 +61,6 @@ public class MoveCharacter : MonoBehaviour
     {
         walking,
         sprinting,
-        wallRunning,
         dashing,
         crouching,
         air
@@ -83,14 +80,6 @@ public class MoveCharacter : MonoBehaviour
             desiredMoveSpeed = dashSpeed;
             speedChangeFactor = dashSpeedChangeFactor;
         }
-
-        //Wall Running
-        else if (wallRunning)
-        {
-            state = MovementState.wallRunning;
-            desiredMoveSpeed = wallRunSpeed;
-        }
-
         //Crouching
         else if (Input.GetKey(crouchKey))
         {
@@ -259,10 +248,6 @@ public class MoveCharacter : MonoBehaviour
         else if (!grounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
 
-        if(!wallRunning)
-        {
-            rb.useGravity = !OnSlope();
-        }
     }
 
     private void SpeedControl()
