@@ -22,17 +22,18 @@ public class Dashing : MonoBehaviour
     public float dashFovStartTime;
     public float dashFovEndTime;
 
-    [Header("Cooldown")]
-    public float dashCooldown;
-    private float dashCooldownTimer;
-
     [Header("Input")]
-    public KeyCode dashKey = KeyCode.B;
+    public KeyCode dashKey = KeyCode.E;
+
+    private DashUiSystem dashUiSystem;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         pm = GetComponent<MoveCharacter>();
+
+        // Find the DashUiSystem
+        dashUiSystem = FindObjectOfType<DashUiSystem>();
     }
 
     private void Update()
@@ -41,25 +42,19 @@ public class Dashing : MonoBehaviour
         {
             Dash();
         }
-
-        if (dashCooldownTimer > 0)
-        {
-            dashCooldownTimer -= Time.deltaTime;
-        }
     }
 
     private void Dash()
     {
-        if (dashCooldownTimer > 0)
+        if (dashUiSystem.dashBar.value < 1)
         {
             return;
         }
-        else
-        {
-            dashCooldownTimer = dashCooldown;
-        }
 
         pm.dashing = true;
+
+        //Update Ui
+        dashUiSystem.DashUsed();
 
 
         cam.DoFov(dashFov, dashFovStartTime);
