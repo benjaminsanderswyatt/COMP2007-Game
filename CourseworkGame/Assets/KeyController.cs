@@ -11,14 +11,14 @@ public class KeyController : MonoBehaviour
     [SerializeField]
     private GameObject lightObj;
 
-    [Header("Key System")]
-    [SerializeField]
     private KeySystem keySystem;
 
     private void Start()
     {
         keyObj.SetActive(true);
         lightObj.SetActive(true);
+
+        keySystem = FindObjectOfType<KeySystem>();
     }
 
 

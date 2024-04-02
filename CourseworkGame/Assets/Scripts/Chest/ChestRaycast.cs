@@ -32,9 +32,10 @@ public class ChestRaycast : MonoBehaviour
         {
             if (hit.collider.gameObject.layer == 7) //chest
             {
+                raycastedChestObj = hit.collider.gameObject.GetComponent<MyChestController>();
+
                 if (!doOnce)
                 {
-                    raycastedChestObj = hit.collider.gameObject.GetComponent<MyChestController>();
                     CrosshairChange(true);
                 }
 
@@ -48,9 +49,10 @@ public class ChestRaycast : MonoBehaviour
             }
             else if (hit.collider.CompareTag(interactableTag) && hit.collider.gameObject.layer == 8) //Key
             {
+                raycastedKeyObj = hit.collider.gameObject.GetComponent<KeyController>();
+
                 if (!doOnce)
                 {
-                    raycastedKeyObj = hit.collider.gameObject.GetComponent<KeyController>();
                     CrosshairChange(true);
                 }
 

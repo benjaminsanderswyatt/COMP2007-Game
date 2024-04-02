@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class HealthSystem : MonoBehaviour
@@ -71,9 +72,6 @@ public class HealthSystem : MonoBehaviour
 
     private void Update()
     {
-        CheckTestingKeys(); // Test code which uses keys to demonstrate healthbar functionality
-
-
         //Bar Animations
 
         // Damage animation. Decreases the Damage bar over a given damage duration using the AnimationCurve
@@ -94,21 +92,6 @@ public class HealthSystem : MonoBehaviour
             healthBar.value = Mathf.Lerp(healthBeforeHeal, currentHealth, curveValue);
         }
         
-    }
-
-
-    //Testing method
-    private void CheckTestingKeys()
-    {
-        if (Input.GetKeyDown(KeyCode.G)) // Take damage. G key
-        {
-            TakeDamage(1); // Does 1 damage
-        }
-
-        if (Input.GetKeyDown(KeyCode.H)) // Heal. H key
-        {
-            AddHealth(1); // Heals 1 health
-        }
     }
 
     public void TakeDamage(int damageAmount)
@@ -134,11 +117,9 @@ public class HealthSystem : MonoBehaviour
 
         if (currentHealth - damageAmount <= 0)
         {
-            //The player has died
 
-            currentHealth = 0;
-            
-            // Death will be called here
+            //The player has died
+            Death();
 
             return;
         }
@@ -195,6 +176,18 @@ public class HealthSystem : MonoBehaviour
 
         // Play the heart icon animation for healing
         heartAnim.Play("HeartPump");
+    }
+
+
+    
+    private void Death()
+    {
+        currentHealth = 0;
+        currentHealthBar.value = 0;
+        healthBar.value = 0;
+
+        ScreenManager.manager.GameOver();
+
     }
 
 }

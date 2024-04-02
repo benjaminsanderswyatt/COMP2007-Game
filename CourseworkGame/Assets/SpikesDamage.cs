@@ -13,16 +13,16 @@ public class SpikesDamage : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        InvokeRepeating("PrintToConsole", 0f, 1f); // Print every second
+        InvokeRepeating("DealDamage", 0f, 1f); // Damage every second inside
         
     }
 
     private void OnTriggerExit(Collider other)
     {
-        CancelInvoke("PrintToConsole"); // Stop printing when player exits
+        CancelInvoke("DealDamage"); // Stop damaging when player exits
     }
 
-    private void PrintToConsole()
+    private void DealDamage()
     {
         _healthSystem.TakeDamage(1);
     }

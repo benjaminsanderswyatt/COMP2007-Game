@@ -16,7 +16,7 @@ public class GotoTutorial : MonoBehaviour
     {
         if (keySystem.hasKey)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+            ScreenManager.manager.WinGame();
         }
         else
         {

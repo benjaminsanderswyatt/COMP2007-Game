@@ -19,22 +19,6 @@ public class KeySystem : MonoBehaviour
         key.SetActive(false);
     }
 
-    private void Update()
-    {
-        CheckTestingKeys();
-
-    }
-
-
-    //Testing method
-    private void CheckTestingKeys()
-    {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            AddKey();
-        }
-    }
-
     public void AddKey()
     {
         hasKey = true;

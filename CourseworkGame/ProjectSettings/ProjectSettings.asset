@@ -617,8 +617,9 @@ PlayerSettings:
     Nintendo Switch: 
     PS4: 
     PS5: 
+    Server: PROBUILDER_EXPERIMENTAL_FEATURES
     Stadia: 
-    Standalone: 
+    Standalone: PROBUILDER_EXPERIMENTAL_FEATURES
     WebGL: 
     Windows Store Apps: 
     XboxOne: 
