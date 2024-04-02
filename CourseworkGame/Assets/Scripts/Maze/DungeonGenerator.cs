@@ -64,16 +64,39 @@ public class DungeonGenerator : MonoBehaviour
 
     public Vector2Int size;
     public int startPos = 0;
-    public Rule[] rooms;
+    public List<Rule> rooms;
+    public Rule keyRoomLocation;
     public Vector2 offset;
 
     List<Cell> board;
 
     private void Start()
     {
+        GenerateKeyLocation();
+        
         MazeGenerator();
         GenerateDungeon();
     }
+
+
+    private void GenerateKeyLocation()
+    {
+        //Randomly place the room between the bounds
+        int randX = Random.Range(keyRoomLocation.minPosition.x, keyRoomLocation.maxPosition.x);
+        int randY = Random.Range(keyRoomLocation.minPosition.y, keyRoomLocation.maxPosition.y);
+
+        Rule keyRoom = new Rule
+        {
+            room = keyRoomLocation.room,
+            minPosition = new Vector2Int(randX, randY),
+            maxPosition = new Vector2Int(randX, randY),
+            WeightedProbability = 1,
+            obligatory = true
+        };
+
+        rooms.Add(keyRoom);
+    }
+
 
     private int SelectRoom(int i, int j)
     {
@@ -81,7 +104,7 @@ public class DungeonGenerator : MonoBehaviour
 
         List<int> availableRooms = new List<int>();
 
-        for (int k = 0; k < rooms.Length; k++)
+        for (int k = 0; k < rooms.Count; k++)
         {
             RoomSelection validRoom = rooms[k].ProbabililityOfSpawning(i, j);
 

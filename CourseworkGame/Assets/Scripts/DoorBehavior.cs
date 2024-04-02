@@ -15,7 +15,7 @@ public class DoorBehavior : MonoBehaviour
     [Header("Closing Curve")]
     public AnimationCurve shakeClosingCurve;
 
-    public TestShake cameraShake;
+    public DoorCamShake cameraShake;
 
     private bool doorOpen = false;
 

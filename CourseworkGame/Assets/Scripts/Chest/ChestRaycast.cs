@@ -10,12 +10,11 @@ public class ChestRaycast : MonoBehaviour
     private int rayLength = 5;
     [SerializeField]
     private LayerMask layerMaskInteract;
-    [SerializeField]
-    private string excludeLayerName = null;
 
-    private MyChestController raycastedObj;
+    private MyChestController raycastedChestObj;
+    private KeyController raycastedKeyObj;
 
-    [SerializeField] private KeyCode openChestKey = KeyCode.Mouse1;
+    [SerializeField] private KeyCode interactKey = KeyCode.Mouse1;
 
     [SerializeField] 
     private Image crosshair = null;
@@ -29,29 +28,46 @@ public class ChestRaycast : MonoBehaviour
         RaycastHit hit;
         Vector3 fwd = transform.TransformDirection(Vector3.forward);
 
-        int mask = 1 << LayerMask.NameToLayer(excludeLayerName) | layerMaskInteract.value;
-
-        if(Physics.Raycast(transform.position, fwd, out hit, rayLength, mask))
+        if (Physics.Raycast(transform.position, fwd, out hit, rayLength) && hit.collider.CompareTag(interactableTag))
         {
-            if (hit.collider.CompareTag(interactableTag))
+            if (hit.collider.gameObject.layer == 7) //chest
             {
                 if (!doOnce)
                 {
-                    raycastedObj = hit.collider.gameObject.GetComponent<MyChestController>();
+                    raycastedChestObj = hit.collider.gameObject.GetComponent<MyChestController>();
                     CrosshairChange(true);
                 }
 
                 isCrosshairactive = true;
                 doOnce = true;
 
-                if (Input.GetKeyDown(openChestKey))
+                if (Input.GetKeyDown(interactKey))
                 {
-                    raycastedObj.PlayAnimation();
+                    raycastedChestObj.PlayAnimation();
                 }
             }
+            else if (hit.collider.CompareTag(interactableTag) && hit.collider.gameObject.layer == 8) //Key
+            {
+                if (!doOnce)
+                {
+                    raycastedKeyObj = hit.collider.gameObject.GetComponent<KeyController>();
+                    CrosshairChange(true);
+                }
 
+                isCrosshairactive = true;
+                doOnce = true;
 
-
+                if (Input.GetKeyDown(interactKey))
+                {
+                    raycastedKeyObj.TakeKey();
+                }
+            }
+            else
+            {
+                CrosshairChange(false);
+                doOnce = false;
+            }
+            
 
         }
         else if (isCrosshairactive)
