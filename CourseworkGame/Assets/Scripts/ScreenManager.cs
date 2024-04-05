@@ -21,7 +21,6 @@ public class ScreenManager : MonoBehaviour
     {
         DontDestroyOnLoad(dataTransfer);
     }
-
     public void BeginTimer()
     {
         if (!timerOn)

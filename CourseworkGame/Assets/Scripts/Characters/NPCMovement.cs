@@ -35,32 +35,49 @@ public class NPCMovement : MonoBehaviour
 
     public float heightFactor;
 
-    public void Testing()
-    {
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            theAgent.transform.position = new Vector3 (12, 4, -12);
-        }
-    }
+    [SerializeField]
+    private Desire desire;
 
+    private enum Desire
+    {
+        idle,
+        patrol
+    }
 
     void Update()
     {
-        Testing();
-
-
-        //Animation Idle
+        Animate();
+        //theAgent.SetDestination(Waypoint1.transform.position);
 
 
         //When the player gets close
         if (Vector3.Distance(theAgent.transform.position, Player.transform.position) < PlayerRange)
         {
-            theAgent.SetDestination(Waypoint1.transform.position);
+
         }
 
+        //When the player gets close
+        if (Vector3.Distance(theAgent.transform.position, Player.transform.position) < PlayerRange)
+        {
 
+        }
 
-        if(theAgent.velocity.magnitude > 0)
+        switch (desire)
+        {
+            case Desire.idle:
+                //Idle();
+                break;            
+            case Desire.patrol:
+                //Patrol();
+                break;
+        }
+
+    }
+
+    private void Animate()
+    {
+        //Animating Movement
+        if (theAgent.velocity.magnitude > 0)
         {
             Animator.SetBool("IsMoving", true);
             Animator.SetFloat("InputMagnitude", theAgent.velocity.magnitude / theAgent.speed, 0.05f, Time.deltaTime);
@@ -87,7 +104,7 @@ public class NPCMovement : MonoBehaviour
             }
 
             ChangeHeight();
-            
+
             if (Vector3.Distance(theAgent.transform.position, startPosition) / journeyDistance >= 0.5)
             {
                 Animator.SetBool("IsFalling", true);
@@ -98,7 +115,7 @@ public class NPCMovement : MonoBehaviour
                 Animator.SetBool("IsFalling", false);
                 Animator.SetBool("IsJumping", true);
             }
-            
+
         }
         else
         {
@@ -111,9 +128,8 @@ public class NPCMovement : MonoBehaviour
             Animator.SetBool("IsJumping", false);
             Animator.SetBool("IsGrounded", true);
             Animator.SetBool("IsFalling", false);
-            
-        }
 
+        }
     }
 
     private void ChangeHeight()

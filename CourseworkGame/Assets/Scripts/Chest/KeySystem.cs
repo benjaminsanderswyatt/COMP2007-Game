@@ -12,6 +12,10 @@ public class KeySystem : MonoBehaviour
     [SerializeField]
     public GameObject key;
 
+    [Header("KeyReminder")]
+    [SerializeField]
+    private Animator keyReminderAnim;
+
 
     private void Start()
     {
@@ -23,6 +27,17 @@ public class KeySystem : MonoBehaviour
     {
         hasKey = true;
         key.SetActive(true);
+    }
+
+
+    public void OpenKeyReminder()
+    {
+        keyReminderAnim.SetBool("IsOpen", true);
+    }
+
+    public void CloseKeyReminder()
+    {
+        keyReminderAnim.SetBool("IsOpen", false);
     }
 
 

@@ -20,9 +20,14 @@ public class GotoTutorial : MonoBehaviour
         }
         else
         {
-            //No key
+            keySystem.OpenKeyReminder();
+            
         }
 
-        
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        keySystem.CloseKeyReminder();
     }
 }

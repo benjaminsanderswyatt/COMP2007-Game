@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class DoorController : MonoBehaviour
 {
+    public bool keyDelivered;
+
     Animator doorAnim;
 
     [Header("Opening Curve")]
@@ -18,8 +20,11 @@ public class DoorController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        doorAnim.SetBool("isOpening", true);
-        cameraShake.StartShake(shakeOpeningCurve);
+        if (keyDelivered)
+        {
+            doorAnim.SetBool("isOpening", true);
+            cameraShake.StartShake(shakeOpeningCurve);
+        }
     }
 
     private void OnTriggerExit(Collider other)

@@ -13,6 +13,7 @@ public class ChestRaycast : MonoBehaviour
 
     private MyChestController raycastedChestObj;
     private KeyController raycastedKeyObj;
+    private NpcDialogTrigger raycastedNpcObj;
 
     [SerializeField] private KeyCode interactKey = KeyCode.Mouse1;
 
@@ -25,59 +26,80 @@ public class ChestRaycast : MonoBehaviour
 
     private void Update()
     {
-        RaycastHit hit;
-        Vector3 fwd = transform.TransformDirection(Vector3.forward);
-
-        if (Physics.Raycast(transform.position, fwd, out hit, rayLength) && hit.collider.CompareTag(interactableTag))
+        //do when player is not in dialog
+        if (!DialogManager.inDialog)
         {
-            if (hit.collider.gameObject.layer == 7) //chest
+
+            RaycastHit hit;
+            Vector3 fwd = transform.TransformDirection(Vector3.forward);
+
+            if (Physics.Raycast(transform.position, fwd, out hit, rayLength) && hit.collider.CompareTag(interactableTag))
             {
-                raycastedChestObj = hit.collider.gameObject.GetComponent<MyChestController>();
-
-                if (!doOnce)
+                if (hit.collider.gameObject.layer == 7) //chest
                 {
-                    CrosshairChange(true);
+                    raycastedChestObj = hit.collider.gameObject.GetComponent<MyChestController>();
+
+                    if (!doOnce)
+                    {
+                        CrosshairChange(true);
+                    }
+
+                    isCrosshairactive = true;
+                    doOnce = true;
+
+                    if (Input.GetKeyDown(interactKey))
+                    {
+                        raycastedChestObj.PlayAnimation();
+                    }
+                }
+                else if (hit.collider.CompareTag(interactableTag) && hit.collider.gameObject.layer == 8) //Key
+                {
+                    raycastedKeyObj = hit.collider.gameObject.GetComponent<KeyController>();
+
+                    if (!doOnce)
+                    {
+                        CrosshairChange(true);
+                    }
+
+                    isCrosshairactive = true;
+                    doOnce = true;
+
+                    if (Input.GetKeyDown(interactKey))
+                    {
+                        raycastedKeyObj.TakeKey();
+                    }
+                }
+                else if (hit.collider.CompareTag(interactableTag) && hit.collider.gameObject.layer == 9) //NPC
+                {
+                    raycastedNpcObj = hit.collider.gameObject.GetComponent<NpcDialogTrigger>();
+
+                    if (!doOnce)
+                    {
+                        CrosshairChange(true);
+                    }
+
+                    isCrosshairactive = true;
+                    doOnce = true;
+
+                    if (Input.GetKeyDown(interactKey))
+                    {
+                        raycastedNpcObj.Interact();
+                    }
+                }
+                else
+                {
+                    CrosshairChange(false);
+                    doOnce = false;
                 }
 
-                isCrosshairactive = true;
-                doOnce = true;
 
-                if (Input.GetKeyDown(interactKey))
-                {
-                    raycastedChestObj.PlayAnimation();
-                }
             }
-            else if (hit.collider.CompareTag(interactableTag) && hit.collider.gameObject.layer == 8) //Key
-            {
-                raycastedKeyObj = hit.collider.gameObject.GetComponent<KeyController>();
-
-                if (!doOnce)
-                {
-                    CrosshairChange(true);
-                }
-
-                isCrosshairactive = true;
-                doOnce = true;
-
-                if (Input.GetKeyDown(interactKey))
-                {
-                    raycastedKeyObj.TakeKey();
-                }
-            }
-            else
+            else if (isCrosshairactive)
             {
                 CrosshairChange(false);
                 doOnce = false;
             }
-            
-
         }
-        else if (isCrosshairactive)
-        {
-            CrosshairChange(false);
-            doOnce = false;
-        }
-
     }
 
     void CrosshairChange(bool on)

@@ -38,10 +38,15 @@ public class Dashing : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(dashKey))
+        //When player is in dialog stop dash
+        if (!DialogManager.inDialog)
         {
-            Dash();
+            if (Input.GetKeyDown(dashKey))
+            {
+                Dash();
+            }
         }
+
     }
 
     private void Dash()

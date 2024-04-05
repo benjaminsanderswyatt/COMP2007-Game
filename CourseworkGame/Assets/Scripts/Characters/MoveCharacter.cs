@@ -176,23 +176,32 @@ public class MoveCharacter : MonoBehaviour
 
     private void Update()
     {
-        // ground check
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+        //When talking stop movement
+        if (!DialogManager.inDialog)
+        {
 
-        MyInput();
-        SpeedControl();
-        MovementStateHandler();
+            // ground check
+            grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
 
-        // handle drag
-        if (state == MovementState.walking || state == MovementState.sprinting || state == MovementState.crouching)
-            rb.drag = groundDrag;
-        else
-            rb.drag = 0;
+            MyInput();
+            SpeedControl();
+            MovementStateHandler();
+
+            // handle drag
+            if (state == MovementState.walking || state == MovementState.sprinting || state == MovementState.crouching)
+                rb.drag = groundDrag;
+            else
+                rb.drag = 0;
+        }
     }
 
     private void FixedUpdate()
     {
-        MovePlayer();
+        if (!DialogManager.inDialog)
+        {
+            MovePlayer();
+        }
+        
     }
 
     private void MyInput()

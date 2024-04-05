@@ -30,21 +30,35 @@ public class FirstPersonCamera : MonoBehaviour
 
     private void Update()
     {
-        //get input
-        float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
-        float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
+        if (!DialogManager.inDialog)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
 
-        yRotation += mouseX;
-        xRotation -= mouseY;
+            //get input
+            float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
+            float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
 
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+            yRotation += mouseX;
+            xRotation -= mouseY;
 
-        //rotate cam & orientation
-        camHolder.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+            xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-        orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+            //rotate cam & orientation
+            camHolder.rotation = Quaternion.Euler(xRotation, yRotation, 0);
 
-        playerObj.rotation = Quaternion.Euler(0, yRotation, 0);
+            orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+
+            playerObj.rotation = Quaternion.Euler(0, yRotation, 0);
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+
+
+        
 
     }
 
@@ -67,28 +81,5 @@ public class FirstPersonCamera : MonoBehaviour
         }
 
         GetComponent<Camera>().fieldOfView = endValue;
-    }
-
-    public void DoTilt(float tiltAmount)
-    {
-        Vector3 startRotation = transform.localEulerAngles;
-        float endRotationZ = Mathf.Clamp(tiltAmount, -180f, 180f);
-        Vector3 endRotation = new Vector3(0, 0, endRotationZ);
-        StartCoroutine(LerpRotation(startRotation, endRotation, 0.25f));
-    }
-
-    private IEnumerator LerpRotation(Vector3 startRotation, Vector3 endRotation, float duration)
-    {
-        float elapsedTime = 0f;
-
-        while (elapsedTime < duration)
-        {
-            float lerpedZ = Mathf.LerpAngle(startRotation.z, endRotation.z, elapsedTime / duration);
-            transform.localRotation = Quaternion.Euler(new Vector3(startRotation.x, startRotation.y, lerpedZ));
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        transform.localRotation = Quaternion.Euler(endRotation);
     }
 }
