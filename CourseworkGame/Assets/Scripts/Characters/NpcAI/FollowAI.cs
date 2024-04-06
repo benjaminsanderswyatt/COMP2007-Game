@@ -1,10 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
-using static NPCAI;
-using static UnityEditor.FilePathAttribute;
 
 public class FollowAI : MonoBehaviour
 {

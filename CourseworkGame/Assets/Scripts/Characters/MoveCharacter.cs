@@ -171,6 +171,7 @@ public class MoveCharacter : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 
+        animator.SetBool("IsJumping", false);
         readyToJump = true;
 
         //Crouching starting size
@@ -329,6 +330,7 @@ public class MoveCharacter : MonoBehaviour
     {
         if (grounded)
         {
+            animator.SetBool("IsJumping", false);
             animator.SetBool("IsFalling", false);
             animator.SetBool("IsGrounded", true);
         }
@@ -339,7 +341,7 @@ public class MoveCharacter : MonoBehaviour
 
 
         //Animating Movement
-        if (rb.velocity.magnitude > 0)
+        if (rb.velocity.magnitude > 0.05)
         {
             animator.SetBool("IsMoving", true);
             animator.SetFloat("InputMagnitude", rb.velocity.magnitude / desiredMoveSpeed, 0.05f, Time.deltaTime);
