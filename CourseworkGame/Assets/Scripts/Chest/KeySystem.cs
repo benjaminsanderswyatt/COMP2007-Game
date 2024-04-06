@@ -8,6 +8,10 @@ public class KeySystem : MonoBehaviour
 {
     public bool hasKey;
 
+    [Header("Audio")]
+    [SerializeField]
+    private PickRandomSound pickupKeyAudio;
+
     [Header("Text")]
     [SerializeField]
     public GameObject key;
@@ -27,6 +31,9 @@ public class KeySystem : MonoBehaviour
     {
         hasKey = true;
         key.SetActive(true);
+
+        // Play pickup sound
+        pickupKeyAudio.PlayRndSound();
     }
 
 

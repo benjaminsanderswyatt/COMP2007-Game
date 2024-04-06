@@ -8,6 +8,12 @@ public class MyChestController : MonoBehaviour
     private Animator lightAnim;
     private Animator keyAnim;
 
+    [Header("Audio")]
+    private AudioSource chestAudioSource;
+    [SerializeField]
+    private AudioClip openChestClip;
+
+
     [Header("Objects")]
     public GameObject chestLid;
     public GameObject chestLight;
@@ -26,6 +32,8 @@ public class MyChestController : MonoBehaviour
         chestAnim = chestLid.GetComponent<Animator>();
         lightAnim = chestLight.GetComponent<Animator>();
         keyAnim = key.GetComponent<Animator>();
+
+        chestAudioSource = chestLid.GetComponent<AudioSource>();
     }
 
     public void PlayAnimation()
@@ -35,6 +43,10 @@ public class MyChestController : MonoBehaviour
             chestAnim.SetBool("IsOpening", true);
             keyAnim.SetBool("IsOpening", true);
             lightAnim.SetBool("IsLighting", true);
+
+            //play opening sound
+            chestAudioSource.PlayOneShot(openChestClip);
+
             chestOpen = true;
         }
         else
@@ -42,6 +54,10 @@ public class MyChestController : MonoBehaviour
             chestAnim.SetBool("IsOpening", false);
             keyAnim.SetBool("IsOpening", false);
             lightAnim.SetBool("IsLighting", false);
+
+            //play closing sound
+            chestAudioSource.PlayOneShot(openChestClip);
+
             chestOpen = false;
         }
     }

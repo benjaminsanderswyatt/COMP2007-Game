@@ -7,6 +7,8 @@ public class DoorController : MonoBehaviour
 {
     public bool keyDelivered;
 
+    AudioSource doorAudio;
+
     Animator doorAnim;
 
     [Header("Opening Curve")]
@@ -22,6 +24,7 @@ public class DoorController : MonoBehaviour
     {
         if (keyDelivered)
         {
+            doorAudio.Play();
             doorAnim.SetBool("isOpening", true);
             cameraShake.StartShake(shakeOpeningCurve);
         }
@@ -29,12 +32,20 @@ public class DoorController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        
+
+        if (keyDelivered)
+        {
+            doorAudio.Play();
+            cameraShake.StartShake(shakeClosingCurve);
+        }
+
         doorAnim.SetBool("isOpening", false);
-        cameraShake.StartShake(shakeClosingCurve);
     }
 
     void Start()
     {
+        doorAudio = GetComponent<AudioSource>();
         doorAnim = this.transform.parent.GetComponent<Animator>();
     }
 }

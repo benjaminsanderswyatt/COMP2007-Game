@@ -5,6 +5,9 @@ using TMPro;
 
 public class MoveCharacter : MonoBehaviour
 {
+    public Animator animator;
+
+
     [Header("Movement")]
     private float moveSpeed;
     public float walkSpeed;
@@ -193,6 +196,9 @@ public class MoveCharacter : MonoBehaviour
             else
                 rb.drag = 0;
         }
+
+        //animate the player shadow
+        Animate();
     }
 
     private void FixedUpdate()
@@ -314,4 +320,65 @@ public class MoveCharacter : MonoBehaviour
     {
         return Vector3.ProjectOnPlane(direction, slopeHit.normal).normalized;
     }
+
+
+
+
+
+    private void Animate()
+    {
+        if (grounded)
+        {
+            animator.SetBool("IsFalling", false);
+            animator.SetBool("IsGrounded", true);
+        }
+        else
+        {
+            animator.SetBool("IsGrounded", false);
+        }
+
+
+        //Animating Movement
+        if (rb.velocity.magnitude > 0)
+        {
+            animator.SetBool("IsMoving", true);
+            animator.SetFloat("InputMagnitude", rb.velocity.magnitude / desiredMoveSpeed, 0.05f, Time.deltaTime);
+        }
+        else
+        {
+            animator.SetBool("IsMoving", false);
+        }
+
+        if (state == MovementState.crouching)
+        {
+            animator.SetBool("IsSneaking", true);
+            animator.SetFloat("InputMagnitude", rb.velocity.magnitude / desiredMoveSpeed, 0.05f, Time.deltaTime);
+        }
+        else
+        {
+            animator.SetBool("IsSneaking", false);
+        }
+
+
+        //Jumping
+        if (state == MovementState.air)
+        {
+            animator.SetBool("IsJumping", true);
+            animator.SetBool("IsFalling", true);
+        }
+        else
+        {
+            animator.SetBool("IsJumping", false);
+        }
+
+    }
+
+
+
+
+
+
+
+
+
 }

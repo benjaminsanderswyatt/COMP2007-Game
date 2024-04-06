@@ -6,6 +6,17 @@ using UnityEngine.UI;
 
 public class HealthSystem : MonoBehaviour
 {
+    [Header("Audio")]
+    [SerializeField]
+    private PickRandomSound takeDamageAudio;
+    [SerializeField]
+    private PickRandomSound healAudio;
+    [SerializeField]
+    private PickRandomSound dudHealAudio;
+    [SerializeField]
+    private PickRandomSound dieAudio;
+
+
     [Header("Heart Animation")]
     [SerializeField]
     private Animator heartAnim; // Heart Icon
@@ -129,6 +140,9 @@ public class HealthSystem : MonoBehaviour
         currentHealthBar.value = currentHealth;
         healthBar.value -= damageAmount;
 
+        // Play damage sound
+        takeDamageAudio.PlayRndSound();
+
         // Start the damage animation
         damageTimer = 0f;
 
@@ -163,13 +177,21 @@ public class HealthSystem : MonoBehaviour
         if (currentHealth + healAmount >= maxHealth)
         {
             currentHealth = maxHealth;
+
+            // Play dud healing sound
+            dudHealAudio.PlayRndSound();
         }
         else
         {
             currentHealth += healAmount; // Heals the player
+
+            // Play healing sound
+            healAudio.PlayRndSound();
         }
 
         currentHealthBar.value = currentHealth;
+
+        
 
         // Start the damage animation
         healTimer = 0f;
@@ -182,6 +204,9 @@ public class HealthSystem : MonoBehaviour
     
     private void Death()
     {
+        //play death sound
+        dieAudio.PlayRndSound();
+
         currentHealth = 0;
         currentHealthBar.value = 0;
         healthBar.value = 0;
