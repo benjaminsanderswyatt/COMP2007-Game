@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,7 +8,7 @@ public class NPCAI : MonoBehaviour
     [SerializeField]
     private GameObject Player;
 
-    
+
 
     [SerializeField]
     private float speedAnim = 7; //their max speed is 7
@@ -36,7 +34,7 @@ public class NPCAI : MonoBehaviour
 
     [SerializeField]
     private float WayPointRange = 1;
-    
+
 
     Animator Animator;
 
@@ -90,7 +88,7 @@ public class NPCAI : MonoBehaviour
             theAgent.isStopped = true;
 
             LookAtPlayer();
-            
+
         }
     }
 
@@ -133,12 +131,12 @@ public class NPCAI : MonoBehaviour
 
     public void PatrolPoints()
     {
-            if (IsClose(theAgent.transform.position, waypoints[currentObjective].waypoint.transform.position, WayPointRange))
-            {
-                currentObjective = (currentObjective + 1) % waypoints.Length;
+        if (IsClose(theAgent.transform.position, waypoints[currentObjective].waypoint.transform.position, WayPointRange))
+        {
+            currentObjective = (currentObjective + 1) % waypoints.Length;
 
-                StartCoroutine(SetDestinationWithDelay(waypoints[currentObjective].waypoint.transform.position));
-            }
+            StartCoroutine(SetDestinationWithDelay(waypoints[currentObjective].waypoint.transform.position));
+        }
     }
 
     IEnumerator SetDestinationWithDelay(Vector3 destination)

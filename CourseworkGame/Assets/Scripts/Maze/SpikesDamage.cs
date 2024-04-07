@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpikesDamage : MonoBehaviour
@@ -14,7 +12,7 @@ public class SpikesDamage : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         InvokeRepeating("DealDamage", 0f, 1f); // Damage every second inside
-        
+
     }
 
     private void OnTriggerExit(Collider other)

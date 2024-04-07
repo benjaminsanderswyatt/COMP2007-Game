@@ -1,11 +1,8 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class ScreenManager : MonoBehaviour
 {
@@ -67,7 +64,7 @@ public class ScreenManager : MonoBehaviour
 
     public void GameOver()
     {
-        dataTransfer.SetData(false,time);
+        dataTransfer.SetData(false, time);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 

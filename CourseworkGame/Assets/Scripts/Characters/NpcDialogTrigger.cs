@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class NpcDialogTrigger : MonoBehaviour
@@ -28,7 +26,7 @@ public class NpcDialogTrigger : MonoBehaviour
             sendDialog = dialogAfterCondition;
             doorController.keyDelivered = true;
         }
-        
+
         FindObjectOfType<DialogManager>().StartDialog(sendDialog);
         IsTalkingToPlayer = true;
     }

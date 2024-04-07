@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerSounds : MonoBehaviour
@@ -10,11 +8,11 @@ public class PlayerSounds : MonoBehaviour
     private AudioClip[] damageAudioClips;
 
     [SerializeField]
-    private AudioClip[] dieAudioClips;    
-    
+    private AudioClip[] dieAudioClips;
+
     [SerializeField]
-    private AudioClip[] healAudioClips;    
-    
+    private AudioClip[] healAudioClips;
+
     [SerializeField]
     private AudioClip[] keyAudioClips;
 

@@ -17,7 +17,7 @@ public class FollowAI : MonoBehaviour
 
     [SerializeField]
     private float RangeFromPlayer = 7;
-    
+
 
     Animator Animator;
 
@@ -59,7 +59,7 @@ public class FollowAI : MonoBehaviour
             theAgent.isStopped = true;
 
             LookAtPlayer();
-            
+
         }
     }
 

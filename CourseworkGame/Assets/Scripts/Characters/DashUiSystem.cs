@@ -88,7 +88,7 @@ public class DashUiSystem : MonoBehaviour
     public void RechargeBar()
     {
         // Start the damage animation
-        rechargeTimer = 0f;  
+        rechargeTimer = 0f;
 
         return;
     }

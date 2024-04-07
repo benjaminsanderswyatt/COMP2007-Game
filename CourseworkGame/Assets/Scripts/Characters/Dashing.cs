@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Dashing : MonoBehaviour
@@ -8,6 +5,7 @@ public class Dashing : MonoBehaviour
     [Header("References")]
     public Transform orientation;
     public Transform playerCam;
+    public GameObject thirdPersonCam;
     private Rigidbody rb;
     private MoveCharacter pm;
 
@@ -64,10 +62,19 @@ public class Dashing : MonoBehaviour
 
         cam.DoFov(dashFov, dashFovStartTime);
 
-        Transform forwardT;
-        forwardT = playerCam;
+        Vector3 fwd;
 
-        Vector3 forceToApply = forwardT.forward.normalized * dashForce + orientation.up * dashUpwardForce;
+        //first or third person dash direction
+        if (SwitchCamera.isFirstPerson)
+        {
+            fwd = playerCam.forward.normalized;
+        }
+        else
+        {
+            fwd = (playerCam.position - thirdPersonCam.transform.position).normalized;
+        }
+
+        Vector3 forceToApply = fwd * dashForce + orientation.up * dashUpwardForce;
 
         delayedForce = forceToApply;
         Invoke(nameof(DelayedDashForce), 0.025f);

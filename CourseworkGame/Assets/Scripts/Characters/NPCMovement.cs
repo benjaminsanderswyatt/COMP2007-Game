@@ -1,12 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class NPCMovement : MonoBehaviour
 {
-    
+
     NavMeshAgent theAgent;
     public bool InRange = false;
     public GameObject Waypoint1;
@@ -66,7 +63,7 @@ public class NPCMovement : MonoBehaviour
         {
             case Desire.idle:
                 //Idle();
-                break;            
+                break;
             case Desire.patrol:
                 //Patrol();
                 break;
@@ -135,7 +132,7 @@ public class NPCMovement : MonoBehaviour
     private void ChangeHeight()
     {
         var onCurve = Mathf.Clamp01(Vector3.Distance(theAgent.transform.position, startPosition) / journeyDistance);
-        
+
         // Interpolate height using curve
         float howHigh = heightCurve.Evaluate(onCurve) * heightFactor;
 

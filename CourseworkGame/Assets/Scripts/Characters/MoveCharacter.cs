@@ -1,7 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class MoveCharacter : MonoBehaviour
 {
@@ -105,7 +103,7 @@ public class MoveCharacter : MonoBehaviour
         {
             state = MovementState.air;
 
-            if(desiredMoveSpeed < sprintSpeed)
+            if (desiredMoveSpeed < sprintSpeed)
             {
                 desiredMoveSpeed = walkSpeed;
             }
@@ -208,7 +206,7 @@ public class MoveCharacter : MonoBehaviour
         {
             MovePlayer();
         }
-        
+
     }
 
     private void MyInput()
@@ -271,7 +269,7 @@ public class MoveCharacter : MonoBehaviour
         // limit speed on slope
         if (OnSlope() && !exitingSlope)
         {
-            if(rb.velocity.magnitude > moveSpeed)
+            if (rb.velocity.magnitude > moveSpeed)
             {
                 rb.velocity = rb.velocity.normalized * moveSpeed;
             }

@@ -43,13 +43,13 @@ public class DungeonGenerator : MonoBehaviour
 
             var details = new RoomSelection(RoomSpawning.CantSpawn, WeightedProbability);
 
-            if(x >= minPosition.x && x <= maxPosition.x && y >= minPosition.y && y <= maxPosition.y)
+            if (x >= minPosition.x && x <= maxPosition.x && y >= minPosition.y && y <= maxPosition.y)
             {
                 if (obligatory)
                 {
                     details.spawning = RoomSpawning.MustSpawn;
                     return details;
-                    
+
                 }
                 else
                 {
@@ -73,7 +73,7 @@ public class DungeonGenerator : MonoBehaviour
     private void Start()
     {
         GenerateKeyLocation();
-        
+
         MazeGenerator();
         GenerateDungeon();
     }
@@ -146,7 +146,7 @@ public class DungeonGenerator : MonoBehaviour
         {
             for (int j = 0; j < size.y; j++)
             {
-                int selectedRoom = SelectRoom(i,j);
+                int selectedRoom = SelectRoom(i, j);
 
                 var newRoom = Instantiate(rooms[selectedRoom].room, new Vector3(i * offset.x, 0, -j * offset.y), Quaternion.identity, transform).GetComponent<RoomBehaviour>();
                 newRoom.UpdateRoom(board[i + j * size.x].status);
@@ -185,7 +185,7 @@ public class DungeonGenerator : MonoBehaviour
 
             if (neighbors.Count == 0)
             {
-                if(path.Count == 0)
+                if (path.Count == 0)
                 {
                     break;
                 }
@@ -202,8 +202,8 @@ public class DungeonGenerator : MonoBehaviour
 
                 if (newCell > currentCell)
                 {
-                   
-                    if (newCell -1 == currentCell)
+
+                    if (newCell - 1 == currentCell)
                     {
                         //Right
                         board[currentCell].status[2] = true;

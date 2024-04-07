@@ -1,8 +1,13 @@
+using Cinemachine;
 using System.Collections;
 using UnityEngine;
 
 public class FirstPersonCamera : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject thirdPersonCam;
+
+
     [Header("References")]
     public float sensX;
     public float sensY;
@@ -22,7 +27,7 @@ public class FirstPersonCamera : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        startCamFov = GetComponent<Camera>().fieldOfView;
+        startCamFov = GetComponent<CinemachineVirtualCamera>().m_Lens.FieldOfView;
     }
 
     private void Update()
@@ -41,12 +46,29 @@ public class FirstPersonCamera : MonoBehaviour
 
             xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-            //rotate cam & orientation
-            camHolder.rotation = Quaternion.Euler(xRotation, yRotation, 0);
 
-            orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+            if (SwitchCamera.isFirstPerson)
+            {
+                //rotate cam & orientation
+                camHolder.rotation = Quaternion.Euler(xRotation, yRotation, 0);
 
-            playerObj.rotation = Quaternion.Euler(0, yRotation, 0);
+                orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+
+                playerObj.rotation = Quaternion.Euler(0, yRotation, 0);
+            }
+            else
+            {
+                //rotate cam & orientation
+                transform.forward = camHolder.forward;
+
+                Vector3 dirToCombatLookAt = playerObj.position - new Vector3(thirdPersonCam.transform.position.x, playerObj.position.y, thirdPersonCam.transform.position.z);
+                orientation.forward = dirToCombatLookAt.normalized;
+
+                playerObj.forward = dirToCombatLookAt.normalized;
+            }
+
+
+
         }
         else
         {
@@ -55,13 +77,13 @@ public class FirstPersonCamera : MonoBehaviour
         }
 
 
-        
+
 
     }
 
     public void DoFov(float endValue, float duration)
     {
-        float startValue = GetComponent<Camera>().fieldOfView;
+        float startValue = GetComponent<CinemachineVirtualCamera>().m_Lens.FieldOfView;
         StartCoroutine(LerpFieldOfView(startValue, endValue, duration));
     }
 
@@ -72,11 +94,11 @@ public class FirstPersonCamera : MonoBehaviour
         while (elapsedTime < duration)
         {
             float newValue = Mathf.Lerp(startValue, endValue, elapsedTime / duration);
-            GetComponent<Camera>().fieldOfView = newValue;
+            GetComponent<CinemachineVirtualCamera>().m_Lens.FieldOfView = newValue;
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        GetComponent<Camera>().fieldOfView = endValue;
+        GetComponent<CinemachineVirtualCamera>().m_Lens.FieldOfView = endValue;
     }
 }

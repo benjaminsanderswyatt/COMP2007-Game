@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -32,7 +30,7 @@ public class GameOverManagement : MonoBehaviour
 
         data = FindObjectOfType<DataTransferToEndScreen>();
 
-        
+
 
         winScreen.SetActive(false);
         deathScreen.SetActive(false);
@@ -102,7 +100,7 @@ public class SaveData
 {
     public float bestTime;
 
-    public SaveData (float bT)
+    public SaveData(float bT)
     {
         bestTime = bT;
     }

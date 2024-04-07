@@ -43,7 +43,7 @@ public class DialogManager : MonoBehaviour
 
     public void DisplayNextSentence()
     {
-        if(sentences.Count == 0)
+        if (sentences.Count == 0)
         {
             EndDialog();
             return;
@@ -59,7 +59,7 @@ public class DialogManager : MonoBehaviour
     {
         dialogTxt.text = "";
 
-        foreach(char letter in sentence.ToCharArray())
+        foreach (char letter in sentence.ToCharArray())
         {
             dialogTxt.text += letter;
             yield return new WaitForSecondsRealtime(typingSpeed);

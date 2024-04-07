@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Sliding : MonoBehaviour
@@ -30,7 +28,7 @@ public class Sliding : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         pm = GetComponent<MoveCharacter>();
-        
+
         startYScale = playerObj.localScale.y;
     }
 

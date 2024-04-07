@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RandomRepair : MonoBehaviour
@@ -7,7 +6,7 @@ public class RandomRepair : MonoBehaviour
     private AudioSource audioSource;
 
     [Range(0.1f, 0.4f)]
-    public float volumeChangeMult = 0.2f;    
+    public float volumeChangeMult = 0.2f;
     [Range(0.1f, 0.5f)]
     public float pitchChangeMult = 0.2f;
 
@@ -24,8 +23,8 @@ public class RandomRepair : MonoBehaviour
     private void PlaySound() //jump landing
     {
         AudioClip sound = GetRandomSound(randomSounds);
-        audioSource.volume = Random.Range(0.5f - volumeChangeMult , 0.5f);
-        audioSource.pitch = Random.Range(1 - pitchChangeMult , 1);
+        audioSource.volume = Random.Range(0.5f - volumeChangeMult, 0.5f);
+        audioSource.pitch = Random.Range(1 - pitchChangeMult, 1);
         audioSource.PlayOneShot(sound);
     }
 

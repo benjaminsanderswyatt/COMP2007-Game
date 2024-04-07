@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ChestRaycast : MonoBehaviour
 {
@@ -17,10 +13,15 @@ public class ChestRaycast : MonoBehaviour
 
     [SerializeField] private KeyCode interactKey = KeyCode.Mouse1;
 
-    [SerializeField] 
-    private Image crosshair = null;
+    [SerializeField]
+    private UnityEngine.UI.Image crosshair = null;
     private bool isCrosshairactive;
     private bool doOnce;
+
+    [SerializeField]
+    private GameObject cameraPos;
+    [SerializeField]
+    private GameObject thirdPersonCam;
 
     private const string interactableTag = "InteractiveObject";
 
@@ -31,7 +32,16 @@ public class ChestRaycast : MonoBehaviour
         {
 
             RaycastHit hit;
-            Vector3 fwd = transform.TransformDirection(Vector3.forward);
+            Vector3 fwd;
+
+            if (SwitchCamera.isFirstPerson)
+            {
+                fwd = transform.TransformDirection(Vector3.forward);
+            }
+            else
+            {
+                fwd = (cameraPos.transform.position - thirdPersonCam.transform.position).normalized;
+            }
 
             if (Physics.Raycast(transform.position, fwd, out hit, rayLength) && hit.collider.CompareTag(interactableTag))
             {

@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class HealthSystem : MonoBehaviour
@@ -102,7 +99,7 @@ public class HealthSystem : MonoBehaviour
             float curveValue = healCurve.Evaluate(normalizedTime);
             healthBar.value = Mathf.Lerp(healthBeforeHeal, currentHealth, curveValue);
         }
-        
+
     }
 
     public void TakeDamage(int damageAmount)
@@ -115,7 +112,7 @@ public class HealthSystem : MonoBehaviour
         }
 
         // Ensures the damage animation is smooth when damage overlaps
-        if (damageTimer < damageDuration) 
+        if (damageTimer < damageDuration)
         {
             // The previous damage animation is still running
 
@@ -191,7 +188,7 @@ public class HealthSystem : MonoBehaviour
 
         currentHealthBar.value = currentHealth;
 
-        
+
 
         // Start the damage animation
         healTimer = 0f;
@@ -201,7 +198,7 @@ public class HealthSystem : MonoBehaviour
     }
 
 
-    
+
     private void Death()
     {
         //play death sound

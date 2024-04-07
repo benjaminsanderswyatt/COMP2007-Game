@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GotoTutorial : MonoBehaviour
 {
@@ -25,7 +22,7 @@ public class GotoTutorial : MonoBehaviour
         else
         {
             keySystem.OpenKeyReminder();
-            
+
         }
 
     }
