@@ -21,6 +21,8 @@ The goal of the game is to run through a randomly generated maze while avoiding 
 
 **Interaction -** Right Click
 
+**Swap Camera -** F
+
 **Quit Game -** Escape
 
 ### Installation
