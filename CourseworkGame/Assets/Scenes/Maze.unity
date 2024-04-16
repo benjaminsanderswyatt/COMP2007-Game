@@ -936,13 +936,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c679ed40166885a46907e9d83dd28188, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: {x: 18, y: 18}
+  size: {x: 16, y: 16}
   startPos: 0
   rooms:
   - room: {fileID: 81925056347240487, guid: f870da3155eefa848a2b650a8bf920e7, type: 3}
     minPosition: {x: 0, y: 0}
-    maxPosition: {x: 18, y: 18}
-    WeightedProbability: 25
+    maxPosition: {x: 16, y: 16}
+    WeightedProbability: 20
     obligatory: 0
   - room: {fileID: 81925056347240487, guid: 00c53f1b04eee624c86d86e6b7ec2a8e, type: 3}
     minPosition: {x: 0, y: 0}
@@ -951,33 +951,33 @@ MonoBehaviour:
     obligatory: 1
   - room: {fileID: 81925056347240487, guid: f4bc43a3a34c839479c542ccb72b4301, type: 3}
     minPosition: {x: 0, y: 0}
-    maxPosition: {x: 18, y: 18}
-    WeightedProbability: 4
+    maxPosition: {x: 16, y: 16}
+    WeightedProbability: 2
     obligatory: 0
   - room: {fileID: 81925056347240487, guid: 4996f5b6516ac6d44b1101fcce0babd4, type: 3}
     minPosition: {x: 0, y: 0}
-    maxPosition: {x: 18, y: 18}
-    WeightedProbability: 3
+    maxPosition: {x: 16, y: 16}
+    WeightedProbability: 1
     obligatory: 0
   - room: {fileID: 81925056347240487, guid: 1b2fddaf425b3954ca10db4052b66446, type: 3}
     minPosition: {x: 0, y: 0}
-    maxPosition: {x: 18, y: 18}
-    WeightedProbability: 3
+    maxPosition: {x: 16, y: 16}
+    WeightedProbability: 1
     obligatory: 0
   - room: {fileID: 81925056347240487, guid: d59517825f3a16247b5a3828b715f920, type: 3}
     minPosition: {x: 0, y: 0}
-    maxPosition: {x: 18, y: 18}
+    maxPosition: {x: 16, y: 16}
     WeightedProbability: 1
     obligatory: 0
   - room: {fileID: 81925056347240487, guid: 4735fb6acb1b53341a00deacf9866856, type: 3}
-    minPosition: {x: 17, y: 17}
-    maxPosition: {x: 18, y: 18}
+    minPosition: {x: 15, y: 15}
+    maxPosition: {x: 16, y: 16}
     WeightedProbability: 1
     obligatory: 1
   keyRoomLocation:
     room: {fileID: 81925056347240487, guid: 81437b8ce604270429cd2a0133ce23a0, type: 3}
     minPosition: {x: 2, y: 2}
-    maxPosition: {x: 15, y: 15}
+    maxPosition: {x: 13, y: 13}
     WeightedProbability: 1
     obligatory: 1
   offset: {x: 10, y: 10}
@@ -2341,6 +2341,63 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   dashCooldown: 1.5
+--- !u!1001 &1160692569
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8432053660312714921, guid: a229063bf51a5cf478a5123ac1cb8fa5, type: 3}
+      propertyPath: m_Name
+      value: EndGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432053660312714927, guid: a229063bf51a5cf478a5123ac1cb8fa5, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432053660312714927, guid: a229063bf51a5cf478a5123ac1cb8fa5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -71.35731
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432053660312714927, guid: a229063bf51a5cf478a5123ac1cb8fa5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -24.223877
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432053660312714927, guid: a229063bf51a5cf478a5123ac1cb8fa5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 11.857787
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432053660312714927, guid: a229063bf51a5cf478a5123ac1cb8fa5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432053660312714927, guid: a229063bf51a5cf478a5123ac1cb8fa5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432053660312714927, guid: a229063bf51a5cf478a5123ac1cb8fa5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432053660312714927, guid: a229063bf51a5cf478a5123ac1cb8fa5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432053660312714927, guid: a229063bf51a5cf478a5123ac1cb8fa5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432053660312714927, guid: a229063bf51a5cf478a5123ac1cb8fa5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432053660312714927, guid: a229063bf51a5cf478a5123ac1cb8fa5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a229063bf51a5cf478a5123ac1cb8fa5, type: 3}
 --- !u!1001 &1194611668
 PrefabInstance:
   m_ObjectHideFlags: 0

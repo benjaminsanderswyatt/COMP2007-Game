@@ -77,11 +77,13 @@ public class GameOverManagement : MonoBehaviour
     //Win
     public void Continue()
     {
+        DestroyData();
         SceneManager.LoadScene(1);
     }
 
     public void BackToMenu()
     {
+        DestroyData();
         SceneManager.LoadScene(0);
     }
 
@@ -89,7 +91,15 @@ public class GameOverManagement : MonoBehaviour
     //Loss
     public void TryAgain()
     {
+        DestroyData();
         SceneManager.LoadScene(2);
+    }
+
+    //Destroy the data that was transfered from the previous scene
+
+    public void DestroyData()
+    {
+        Destroy(GameObject.Find("DataStorage"));
     }
 
 
