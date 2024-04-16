@@ -21,6 +21,8 @@ The goal of the game is to run through a randomly generated maze while avoiding 
 
 **Interaction -** Right Click
 
+**Quit Game -** Escape
+
 ### Installation
 
 Download the "Final Game" folder inside this repository. This will contrain a Robot Labyrinth.exe file and other necessary files needed to run the game.
