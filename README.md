@@ -1,5 +1,3 @@
-![Banner](./banner.png)
-
 # COMP2007-Game
 
 This repository is for my Comp2007 assessment 2 Game in unity, named Robot Labyrinth. It contains the windows executable to run the game and the unity files necessary.
